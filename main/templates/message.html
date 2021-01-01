@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static 'wallMsgStyle.css' %}'>
+</head>
+<body>
+    <div id="container">
+        <div id="headerbox">
+            <h2>CodingDojo Wall</h2>
+            <p>Welcome {{ this_user.first_name }}</p>
+            <a href="/user/logout">Log off</a>
+        </div>
+        <form action="/user/message/update" method="POST">
+            {% csrf_token %}
+            <label for="msg_input">Post a message</label>
+            <textarea name="msg_input" cols="80" rows="6"></textarea>
+            <button>Post message</button>
+        </form>
+        {% if cmt_on == False %}
+        <a class="msg" href="/user/message/comment">Show comments</a>
+        {% else %}
+        <a class="msg" href="/user/message">Hide comments</a>
+        {% endif %}
+        {% for msg in all_users_msgs reversed %}
+            <h3 class="msg">{{ msg.user.first_name }} {{ msg.user.last_name }}  {{ msg.created_at }}</h3>
+            <p class="msg">{{ msg.message }}
+            <!-- show delete button if the current user is the owner of the message -->
+                {% if msg.user_id == this_user.id %}
+                <form action="/user/message/{{ msg.id }}/delete" method = "POST">
+                    {% csrf_token %}
+                    <button class="linkStyle">Delete message</button>
+                </form>
+                {% endif %}
+            </p>
+
+            {% if cmt_on == True %}
+                {% for cmt in msg.comment.all %}
+                    <h4 class="cmt">{{ cmt.user.first_name }} {{ cmt.user.last_name }}  {{ cmt.created_at }}</h4>
+                    <p class="cmt">{{ cmt.comment }}
+                        {% if cmt.user_id == this_user.id %}
+                        <form action="/user/message/comment/{{ cmt.id }}/delete" method = "POST">
+                            {% csrf_token %}
+                            <button class="linkStyle">Delete comment</button>
+                        </form>
+                        {% endif %}
+                    </p>
+                {% endfor %}
+                <form class="cmt" action="/user/message/{{ msg.id }}/comment/update" method="POST">
+                    {% csrf_token %}
+                    <label class="cmt" for="cmt_input">Post a comment</label>
+                    <textarea class="cmt" name="cmt_input" cols="80" rows="4"></textarea>
+                    <button>Post comment</button>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log and Registration</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static 'wallLoginStyle.css' %}'>
+</head>
+<body>
+    {% for error in messages %}
+        <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    <div id="container">
+        <form action="/user/create-user" method="POST" id="regForm">
+            {% csrf_token %}
+            <h1>Registration</h1>
+            <table>
+                <tr>
+                    <td><label for="first_name">First Name</label></td>
+                    <td><input type="text" name="first_name"></td>
+                </tr>
+                <tr>
+                    <td><label for="last_name">Last Name</label></td>
+                    <td><input type="text" name="last_name"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td><label for="confirmPW">Confirm Password</label></td>
+                    <td><input type="password" name="confirmPW"></td>
+                </tr>
+            </table>
+            <button>Register</button>
+        </form>
+        <form action="/user/login" id="loginForm" method="POST">
+            {% csrf_token %}
+            <h1>Log in</h1>
+            <table>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+            </table>
+            <button>Log In</button>
+        </form>
+    </div>
+    
+</body>
+</html>

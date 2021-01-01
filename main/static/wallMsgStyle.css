@@ -1,0 +1,64 @@
+* {
+    /* outline: 1px solid grey; */
+}
+#container {
+    width: 800px;
+    padding: 0 10px;
+}
+#headerbox h2, #headerbox p {
+    display: inline;
+}
+
+#headerbox h2 {
+    margin-right: 53%;
+    
+}
+
+#headerbox {
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+}
+
+#headerbox p{
+    margin-right: 1%;
+    
+}
+textarea {
+    width: 85%;
+    display: block;
+    margin: 10px 0;;
+}
+
+button {
+    box-shadow: 3px 3px black;
+    margin-left: 73%;
+}
+
+.msg {
+    width: 86%;
+}
+
+a {
+    font-size: 10pt;
+}
+
+
+.cmt{
+    margin-left: 40px;
+    width: 81%;
+
+}
+
+h3{
+    color: blue;
+}
+
+.linkStyle {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    text-decoration: underline;
+    font-size: 9pt;
+    color: blue;
+}

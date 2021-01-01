@@ -1,0 +1,42 @@
+* {
+    /* outline: 1px solid grey; */
+}
+#container {
+    width: 700px;
+    padding: 10px;
+    display: inline-flex;
+}
+form {
+    width: 45%;
+    
+}
+input {
+    margin-right: 20px;
+    width: 90%;
+}
+label {
+    display: block;
+    margin-left: 15px;
+}
+
+td{
+    padding: 5px;
+    width: 40%;
+}
+button {
+    margin-top: 15px;
+    box-shadow: 3px 3px black;
+    margin-left: 40%;
+}
+
+h1{
+    text-align: center;
+}
+
+#loginForm {
+    margin-left: 30px;
+}
+
+#loginForm label {
+    margin-left: 50px;
+}
